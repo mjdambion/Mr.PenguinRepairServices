@@ -199,4 +199,18 @@ label{font-size:14px;color:#cbd5e1}
   .deck .dot.active{ background:#0ea5e9; }
 }
 
+/* Keep the top navbar above everything */
+.nav{
+  position: sticky;      /* already there, but restate for clarity */
+  top: 0;
+  z-index: 1000;         /* raise above carousels */
+  isolation: isolate;    /* create its own stacking context */
+}
+
+/* On mobile, ensure decks sit below the navbar */
+@media (max-width:560px){
+  .deck{ z-index: 1; position: relative; }
+  .deck .nav, .deck .dots, .deck .card{ z-index: 1; }
+}
+
 
