@@ -177,3 +177,78 @@ function smoothScrollTo(el) {
   document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeLightbox(); });
 })();
 
+/* ===== Mobile carousel for .deck ===== */
+(function(){
+  const MOBILE = () => window.matchMedia('(max-width:560px)').matches;
+
+  function makeCarousel(deck){
+    if (deck.dataset.carousel === 'on') return;
+    deck.dataset.carousel = 'on';
+
+    // Wrap cards into a track
+    const cards = Array.from(deck.querySelectorAll('.card'));
+    const track = document.createElement('div');
+    track.className = 'deck-track';
+    cards.forEach(c => track.appendChild(c));
+    deck.appendChild(track);
+
+    // Nav + dots
+    const nav = document.createElement('div');
+    nav.className = 'nav';
+    nav.innerHTML = `<button type="button" class="prev">‹</button><button type="button" class="next">›</button>`;
+    const dots = document.createElement('div');
+    dots.className = 'dots';
+    cards.forEach((_,i)=>{
+      const d=document.createElement('div'); d.className='dot'+(i===0?' active':'');
+      dots.appendChild(d);
+    });
+    deck.append(nav, dots);
+
+    let idx = 0, startX=0, cur=0, w=deck.querySelector('.card').getBoundingClientRect().width + 10;
+    function update(){ track.style.transform = `translateX(${-idx*w}px)`; 
+      dots.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active', i===idx));
+    }
+    function next(){ idx = Math.min(idx+1, cards.length-1); update(); }
+    function prev(){ idx = Math.max(idx-1, 0); update(); }
+
+    nav.querySelector('.next').addEventListener('click', next);
+    nav.querySelector('.prev').addEventListener('click', prev);
+
+    // Touch swipe
+    track.addEventListener('touchstart', e=>{ startX = e.touches[0].clientX; cur = -idx*w; track.style.transition='none'; }, {passive:true});
+    track.addEventListener('touchmove',  e=>{ const dx = e.touches[0].clientX-startX; track.style.transform=`translateX(${cur+dx}px)`; }, {passive:true});
+    track.addEventListener('touchend',   e=>{
+      track.style.transition='';
+      const dx = e.changedTouches[0].clientX-startX;
+      if (Math.abs(dx) > 40) (dx<0?next:prev)(); else update();
+    });
+
+    // Recompute width on resize
+    window.addEventListener('resize', ()=>{ w = deck.querySelector('.card').getBoundingClientRect().width + 10; update(); });
+    update();
+  }
+
+  function destroyCarousel(deck){
+    if (deck.dataset.carousel !== 'on') return;
+    deck.dataset.carousel = 'off';
+    // unwrap: move cards out of track and remove nav/dots
+    const track = deck.querySelector('.deck-track');
+    if (track){
+      const cards = Array.from(track.children);
+      cards.forEach(c => deck.insertBefore(c, track));
+      track.remove();
+    }
+    deck.querySelectorAll('.nav,.dots').forEach(n=>n.remove());
+  }
+
+  function apply(){
+    document.querySelectorAll('.deck').forEach(deck=>{
+      MOBILE() ? makeCarousel(deck) : destroyCarousel(deck);
+    });
+  }
+
+  apply();
+  window.addEventListener('resize', apply);
+})();
+
+

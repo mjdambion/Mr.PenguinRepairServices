@@ -154,3 +154,49 @@ label{font-size:14px;color:#cbd5e1}
 
 /* force next items to start on a new grid row */
 .decks .break { grid-column: 1 / -1; height: 0; }
+
+
+/* ===== MOBILE CAROUSEL MODE (<=560px) ===== */
+@media (max-width:560px){
+  .deck{ 
+    position:relative; overflow:hidden; width:100%;
+    padding: 8px 0 22px; margin: 10px 0;
+    pointer-events:auto;  /* allow taps */
+    background: rgba(255,255,255,0.02);
+    border:1px solid rgba(255,255,255,0.06);
+    border-radius:16px;
+  }
+  .deck-track{ 
+    display:flex; gap:10px; 
+    transition: transform .28s ease; will-change: transform;
+  }
+  .deck .card{
+    position:relative; transform:none !important; 
+    width: 88vw; height: 58vw; flex: 0 0 88vw; 
+    border-radius:14px; object-fit:cover;
+  }
+  /* Buttons */
+  .deck .nav{ 
+    position:absolute; inset:0; display:flex; 
+    align-items:center; justify-content:space-between; 
+    pointer-events:none; padding:0 6px;
+  }
+  .deck .nav button{
+    pointer-events:auto; border:1px solid rgba(255,255,255,.2);
+    background:#0b1220; color:#e5e7eb; border-radius:12px;
+    width:36px; height:36px; font-weight:800;
+    opacity:.85;
+  }
+  /* Dots */
+  .deck .dots{ 
+    position:absolute; left:50%; bottom:6px; 
+    transform:translateX(-50%); display:flex; gap:6px;
+  }
+  .deck .dot{
+    width:7px; height:7px; border-radius:50%;
+    background:rgba(255,255,255,.25);
+  }
+  .deck .dot.active{ background:#0ea5e9; }
+}
+
+
