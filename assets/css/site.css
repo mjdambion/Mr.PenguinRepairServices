@@ -213,4 +213,47 @@ label{font-size:14px;color:#cbd5e1}
   .deck .nav, .deck .dots, .deck .card{ z-index: 1; }
 }
 
+.brand{ display:flex; align-items:center; gap:10px; min-width:0; }
+.brand-logo{
+  width:40px; height:40px; flex:0 0 40px;
+  object-fit:contain; border-radius:12px; background:#0b1220; padding:2px;
+}
+.brand-text{ line-height:1.05; }
+.brand-text strong{ display:block; }
+.brand-sub{ color:#93c5fd; }
+
+@media (max-width:560px){
+  .brand-logo{ width:30px; height:30px; flex-basis:30px; }
+  .brand-text strong{ font-size:15px; }
+  .brand-sub{ font-size:12px; }
+  .nav .cta{ padding:8px 12px; font-size:14px; border-radius:10px; }
+}
+
+.brand { text-decoration: none; color: inherit; display:flex; align-items:center; gap:10px; }
+
+/* ===== Mobile typography tweaks (<=560px) ===== */
+@media (max-width:560px){
+  /* Navbar brand */
+  .brand-text strong{ font-size:16px; line-height:1.1; }
+  .brand-sub{ font-size:12px; }
+  .brand-logo{ width:28px; height:28px; flex-basis:28px; }
+
+  /* “Get a Quote” button in nav */
+  .nav .cta{ padding:8px 12px; font-size:14px; border-radius:10px; }
+
+  /* Section headings */
+  h1{ font-size:24px; }
+  h2{ font-size:18px; }
+  h3{ font-size:16px; }
+
+  /* Body copy and labels */
+  body{ font-size:14px; }
+  label, .brand-sub, .footer{ font-size:12px; }
+
+  /* Cards & buttons inside panels */
+  .card h3{ font-size:16px; }
+  .cta:not(.nav .cta){ font-size:14px; padding:10px 14px; }
+}
+
+
 
