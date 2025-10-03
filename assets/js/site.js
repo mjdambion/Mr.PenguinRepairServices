@@ -252,3 +252,36 @@ function smoothScrollTo(el) {
 })();
 
 
+/* ===== Build mailto with subject for Quick Quote form ===== */
+(function(){
+  const form = document.getElementById('quoteForm');
+  if (!form) return;
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+
+    const to = 'mr.pengrepairservices@gmail.com';  // change if needed
+    const name   = (form.name?.value || '').trim();
+    const phone  = (form.phone?.value || '').trim();
+    const device = (form.device?.value || '').trim();
+    const issue  = (form.issue?.value || '').trim();
+
+    const subject = `Quote request: ${device || 'Device'} — ${name || 'Client'}`;
+    const body = [
+      `Name: ${name}`,
+      `Phone/Messenger: ${phone}`,
+      `Device: ${device}`,
+      '',
+      'Issue:',
+      issue,
+      '',
+      'Sent from Mr.Penguin Repair Services website'
+    ].join('\n');
+
+    const href = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    // open default mail app
+    window.location.href = href;
+  });
+})();
+
+
