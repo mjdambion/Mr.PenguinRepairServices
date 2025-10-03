@@ -23,7 +23,7 @@
         target="_blank" rel="noopener"
         aria-label="Open our Facebook page">
     <div class="brand">
-      <img class="brand-logo" src="images\Logo\Logo.png" alt="Mr.Penguin logo" onerror="this.outerHTML='🐧'" />
+      <img class="brand-logo" src="images/Logo\Logo.png" alt="Mr.Penguin logo" onerror="this.outerHTML='🐧'" />
       <div>
         <div style="font-size:18px">Mr.Penguin Repair Services</div>
         <div style="font-size:12px; color:#93c5fd">Tagaytay, Cavite · Bauan, Batangas</div>
@@ -120,53 +120,94 @@
       </div>
     </section>
 
+    <!-- Lightbox -->
+    <div id="lb" class="lb-backdrop" aria-hidden="true">
+      <div class="lb-card">
+        <button class="lb-close" type="button" aria-label="Close">✕</button>
+        <img id="lb-img" alt="">
+      </div>
+    </div>
+
     <section class="section">
       <h2 style="margin:0 0 12px 0">Commision</h2>
       <div class="decks">
         <!-- Deck 1 -->
         <div class="deck" aria-label="PC Build & Repairs">
-          <img class="card" src="images\AQ PC\After\WhatsApp Image 2025-02-28 at 19.01.26_5dfc1b71.jpg" style="--i:0">
-          <img class="card" src="images\M PC\After\WhatsApp Image 2025-09-25 at 22.33.02_9535fd8b.jpg"   style="--i:1">
-          <img class="card" src="images\485738357_635193132741287_6234886876760657223_n.jpg"   style="--i:2">
-          <img class="card" src="images\470597885_565237173070217_229203750392893000_n.jpg"  style="--i:3">
-          <img class="card" src="images\480702631_4344183915808640_2471217334702726184_n.jpg"   style="--i:4">
-          <img class="card" src="images\485738357_635193132741287_6234886876760657223_n.jpg"   style="--i:5">
-          <img class="card" src="images\P_20190217_143324 (1).jpg"   style="--i:6">
-          <img class="card" src="images\P_20190325_094911.jpg"   style="--i:7">
-          <img class="card" src="images\P_20190723_140558.jpg"  style="--i:8">
-          <img class="card" src="images\P_20200413_072006.jpg"   style="--i:9">
-          <img class="card" src="images\WhatsApp Image 2025-09-19 at 22.33.20_b7ee11a8.jpg"   style="--i:10">
-          <img class="card" src="images\WhatsApp Image 2025-01-25 at 00.42.57_995e4022.jpg"   style="--i:11">
-          <img class="card" src="images\WhatsApp Image 2025-09-19 at 22.32.51_0a467bdc.jpg"  style="--i:12">
-          <img class="card" src="images\WhatsApp Image 2025-01-12 at 21.27.23_088eb37f.jpg"   style="--i:13">
+          <img class="card" loading="lazy" alt="PC after service"
+              src="images/AQ%20PC/After/WhatsApp%20Image%202025-02-28%20at%2019.01.26_5dfc1b71.jpg" style="--i:0">
+          <img class="card" loading="lazy" alt="PC lighting and cooling"
+              src="images/M%20PC/After/WhatsApp%20Image%202025-09-25%20at%2022.33.02_9535fd8b.jpg" style="--i:1">
+          <img class="card" loading="lazy" alt="Finished build detail"
+              src="images/485738357_635193132741287_6234886876760657223_n.jpg" style="--i:2">
+          <img class="card" loading="lazy" alt="PC interior"
+              src="images/470597885_565237173070217_229203750392893000_n.jpg" style="--i:3">
+          <img class="card" loading="lazy" alt="GPU and fans"
+              src="images/480702631_4344183915808640_2471217334702726184_n.jpg" style="--i:4">
+          <img class="card" loading="lazy" alt="Build showcase"
+              src="images/485738357_635193132741287_6234886876760657223_n.jpg" style="--i:5">
+          <img class="card" loading="lazy" alt="Case back panel before"
+              src="images/P_20190217_143324%20(1).jpg" style="--i:6">
+          <img class="card" loading="lazy" alt="Cable area"
+              src="images/P_20190325_094911.jpg" style="--i:7">
+          <img class="card" loading="lazy" alt="Dust clean"
+              src="images/P_20190723_140558.jpg" style="--i:8">
+          <img class="card" loading="lazy" alt="Fan grill"
+              src="images/P_20200413_072006.jpg" style="--i:9">
+          <img class="card" loading="lazy" alt="Keyboard workbench"
+              src="images/WhatsApp%20Image%202025-09-19%20at%2022.33.20_b7ee11a8.jpg" style="--i:10">
+          <img class="card" loading="lazy" alt="Motherboard close-up"
+              src="images/WhatsApp%20Image%202025-01-25%20at%2000.42.57_995e4022.jpg" style="--i:11">
+          <img class="card" loading="lazy" alt="Workspace"
+              src="images/WhatsApp%20Image%202025-09-19%20at%2022.32.51_0a467bdc.jpg" style="--i:12">
+          <img class="card" loading="lazy" alt="System unit front"
+              src="images/WhatsApp%20Image%202025-01-12%20at%2021.27.23_088eb37f.jpg" style="--i:13">
         </div>
-        
+
         <div class="break"></div> 
         <!-- Deck 2 -->
         <div class="deck" aria-label="Keyboard Mod">
-          <img class="card" src="images\KB\471054832_566203509640250_1144464120913940265_n.jpg" style="--i:0">
-          <img class="card" src="images\KB\472516813_579118085015459_3203358608284419632_n.jpg" style="--i:1">
-          <img class="card" src="images\KB\472605656_578337968426804_492026673261540241_n.jpg" style="--i:2">
-          <img class="card" src="images\KB\472687646_578337811760153_2662108841978017219_n.jpg" style="--i:3">
-          <img class="card" src="images\KB\473246017_584052231188711_7237565135755593906_n.jpg" style="--i:4">
-          <img class="card" src="images\KB\473299433_584052221188712_926281174752214504_n.jpg" style="--i:5">
-          <img class="card" src="images\KB\473335494_584051957855405_4883331586695460483_n.jpg" style="--i:6">
-          <img class="card" src="images\KB\473427460_584037107856890_6124671622665175569_n.jpg" style="--i:7">
-          <img class="card" src="images\KB\473598790_584051984522069_2691150901046097117_n.jpg" style="--i:8">
-          <img class="card" src="images\KB\473599408_584615647799036_2490732000148368644_n.jpg" style="--i:9">
-          <img class="card" src="images\KB\473798989_584615651132369_3081533508067760204_n.jpg" style="--i:10">
-          <img class="card" src="images\KB\476898098_603548862572381_4581331648650386228_n.jpg" style="--i:11">
-          <img class="card" src="images\KB\482344719_625383173722283_2384147143284827289_n.jpg" style="--i:12">
-          <img class="card" src="images\KB\483791430_626515536942380_4219536830437492531_n.jpg" style="--i:13">
-          <img class="card" src="images\KB\485004497_632943072966293_2177736501914494459_n.jpg" style="--i:14">
-          <img class="card" src="images\KB\486081799_636237682636832_1496978092025942384_n.jpg" style="--i:15">
-          <img class="card" src="images\KB\486156061_636237992636801_6816928539265608552_n.jpg" style="--i:16">
-          <img class="card" src="images\KB\549654838_778617971732135_2060871286485853067_n.jpg" style="--i:17">
+          <img class="card" loading="lazy" alt="Keyboard mod 01"
+              src="images/KB/471054832_566203509640250_1144464120913940265_n.jpg" style="--i:0">
+          <img class="card" loading="lazy" alt="Keyboard mod 02"
+              src="images/KB/472516813_579118085015459_3203358608284419632_n.jpg" style="--i:1">
+          <img class="card" loading="lazy" alt="Keyboard mod 03"
+              src="images/KB/472605656_578337968426804_492026673261540241_n.jpg" style="--i:2">
+          <img class="card" loading="lazy" alt="Keyboard mod 04"
+              src="images/KB/472687646_578337811760153_2662108841978017219_n.jpg" style="--i:3">
+          <img class="card" loading="lazy" alt="Keyboard mod 05"
+              src="images/KB/473246017_584052231188711_7237565135755593906_n.jpg" style="--i:4">
+          <img class="card" loading="lazy" alt="Keyboard mod 06"
+              src="images/KB/473299433_584052221188712_926281174752214504_n.jpg" style="--i:5">
+          <img class="card" loading="lazy" alt="Keyboard mod 07"
+              src="images/KB/473335494_584051957855405_4883331586695460483_n.jpg" style="--i:6">
+          <img class="card" loading="lazy" alt="Keyboard mod 08"
+              src="images/KB/473427460_584037107856890_6124671622665175569_n.jpg" style="--i:7">
+          <img class="card" loading="lazy" alt="Keyboard mod 09"
+              src="images/KB/473598790_584051984522069_2691150901046097117_n.jpg" style="--i:8">
+          <img class="card" loading="lazy" alt="Keyboard mod 10"
+              src="images/KB/473599408_584615647799036_2490732000148368644_n.jpg" style="--i:9">
+          <img class="card" loading="lazy" alt="Keyboard mod 11"
+              src="images/KB/473798989_584615651132369_3081533508067760204_n.jpg" style="--i:10">
+          <img class="card" loading="lazy" alt="Keyboard mod 12"
+              src="images/KB/476898098_603548862572381_4581331648650386228_n.jpg" style="--i:11">
+          <img class="card" loading="lazy" alt="Keyboard mod 13"
+              src="images/KB/482344719_625383173722283_2384147143284827289_n.jpg" style="--i:12">
+          <img class="card" loading="lazy" alt="Keyboard mod 14"
+              src="images/KB/483791430_626515536942380_4219536830437492531_n.jpg" style="--i:13">
+          <img class="card" loading="lazy" alt="Keyboard mod 15"
+              src="images/KB/485004497_632943072966293_2177736501914494459_n.jpg" style="--i:14">
+          <img class="card" loading="lazy" alt="Keyboard mod 16"
+              src="images/KB/486081799_636237682636832_1496978092025942384_n.jpg" style="--i:15">
+          <img class="card" loading="lazy" alt="Keyboard mod 17"
+              src="images/KB/486156061_636237992636801_6816928539265608552_n.jpg" style="--i:16">
+          <img class="card" loading="lazy" alt="Keyboard mod 18"
+              src="images/KB/549654838_778617971732135_2060871286485853067_n.jpg" style="--i:17">
         </div>
-
         <!-- Add more decks… -->
 
     </section>
+
+
 
     <section id="faqs" class="section grid-2">
       <div>
@@ -223,19 +264,6 @@
     </form>
   </div>
 
-  <!-- <div id="panel-quote" class="panel">
-    <form action="mailto:mr.pengrepairservices@gmail.com" method="post" enctype="text/plain">
-      <label class="sr-only" for="name2">Name</label>
-      <input id="name2" name="name" placeholder="Your name" required>
-      <div class="row" style="margin-top:8px;">
-        <input name="phone" placeholder="Phone / Messenger" required>
-        <input name="device" placeholder="Device (e.g., ASUS X507MA, RK100)" required>
-      </div>
-      <textarea name="issue" rows="4" style="margin-top:8px;" placeholder="Describe the issue"></textarea>
-      <button class="cta" type="submit" style="margin-top:10px;">Send</button>
-      <p style="color:#93c5fd; font-size:12px; margin-top:8px;">Prefer the full form? Click <strong>Schedule a Repair</strong>. We usually reply within the day.</p>
-    </form>
-  </div> -->
 </div>
   </section>
 
@@ -278,7 +306,8 @@
   logged_out_greeting="Hi! 👋 Need a quick quote? Message us here.">
 </div>
 
-<script src="assets/js/site.js"></script>
+<script src="assets/js/site.js" defer></script>
+<!-- <script src="assets/js/site.js"></script> -->
 
 </body>
 </html>

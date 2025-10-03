@@ -283,3 +283,79 @@ function smoothScrollTo(el) {
 })();
 
 
+
+(() => {
+  const lb = document.getElementById('lb');
+  if (!lb) return; // page-safe
+
+  const lbImg   = document.getElementById('lb-img');
+  const lbClose = lb.querySelector('.lb-close');
+
+  // Track the clicked image to repair it if some old code hides/moves it
+  let activeCard = null;
+  let activeParent = null;
+  let activeNext = null;
+
+  // Open lightbox by copying URL (do NOT move the node)
+  document.addEventListener('click', (e) => {
+    const img = e.target.closest('.deck .card');
+    if (!img) return;
+
+    // prevent any other click handlers from hijacking the image
+    e.preventDefault();
+    e.stopPropagation();
+    if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+
+    activeCard = img;
+    activeParent = img.parentNode || null;
+    activeNext = img.nextSibling || null;
+
+    const src = img.currentSrc || img.src;
+    lbImg.src = src;
+    lbImg.alt = img.alt || '';
+
+    // ensure original image stays visible
+    img.hidden = false;
+    img.style.display = '';
+    img.style.visibility = '';
+    img.classList.remove('hidden', 'invisible', 'is-hidden');
+
+    lb.classList.add('open');
+    document.documentElement.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden';
+  }, true); // capture phase
+
+  function restoreActiveCard() {
+    if (!activeCard) return;
+
+    // if some script removed/moved it, put it back in place
+    if (activeParent && !activeParent.contains(activeCard)) {
+      if (activeNext) activeParent.insertBefore(activeCard, activeNext);
+      else activeParent.appendChild(activeCard);
+    }
+    activeCard.hidden = false;
+    activeCard.style.display = '';
+    activeCard.style.visibility = '';
+    activeCard.classList.remove('hidden', 'invisible', 'is-hidden');
+
+    activeCard = activeParent = activeNext = null;
+  }
+
+  function closeLB() {
+    lb.classList.remove('open');
+    lbImg.src = ''; // free memory
+    document.documentElement.style.overflow = '';
+    document.body.style.overflow = '';
+    restoreActiveCard();
+  }
+
+  lbClose.addEventListener('click', closeLB);
+  lb.addEventListener('click', (e) => { if (e.target === lb) closeLB(); });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && lb.classList.contains('open')) closeLB();
+  });
+})();
+
+
+
+

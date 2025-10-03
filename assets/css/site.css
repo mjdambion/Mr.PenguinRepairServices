@@ -255,5 +255,20 @@ label{font-size:14px;color:#cbd5e1}
   .cta:not(.nav .cta){ font-size:14px; padding:10px 14px; }
 }
 
+@media (max-width:560px){
+  .deck .card{
+    filter:none !important;
+    -webkit-filter:none !important;
+    backdrop-filter:none !important;
+    transform:translateZ(0);
+  }
+}
 
-
+/* Stop the carousel overlay from inheriting the navbar blur */
+.deck .nav{
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  background: transparent !important;
+  border: 0 !important; /* prevents any inherited border */
+  box-shadow: none !important;
+}
