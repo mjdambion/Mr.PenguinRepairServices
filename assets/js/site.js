@@ -266,16 +266,14 @@ function smoothScrollTo(el) {
     const device = (form.device?.value || '').trim();
     const issue  = (form.issue?.value || '').trim();
 
-    const subject = `Quote request: ${device || 'Device'} — ${name || 'Client'}`;
+    const subject = `Quotation request: ${device || 'Device'} — ${name || 'Client'}`;
     const body = [
-      `Name: ${name}`,
+      `Name: ${name}`, 
       `Phone/Messenger: ${phone}`,
       `Device: ${device}`,
-      '',
+      '', 
       'Issue:',
-      issue,
-      '',
-      'Sent from Mr.Penguin Repair Services website'
+      issue
     ].join('\n');
 
     const href = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
