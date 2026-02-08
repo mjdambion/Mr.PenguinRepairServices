@@ -358,51 +358,166 @@ function smoothScrollTo(el) {
 
 
 
+// document.addEventListener("DOMContentLoaded", function () {
+
+//   const carousels = document.querySelectorAll(".carousel");
+
+//   const jsonFiles = [
+//     "assets/data/pc_laptop.json",
+//     "assets/data/kb.json"
+//   ];
+
+//   carousels.forEach((carousel, i) => {
+
+//     const track = carousel.querySelector(".carousel-track");
+//     const prevBtn = carousel.querySelector(".prev");
+//     const nextBtn = carousel.querySelector(".next");
+
+//     let index = 0;
+
+//     fetch(jsonFiles[i])
+//       .then(res => res.json())
+//       .then(images => {
+
+//         images.forEach(src => {
+//           const img = document.createElement("img");
+//           img.src = src;
+//           img.className = "carousel-img";
+//           img.loading = "lazy";
+
+//           img.addEventListener("click", () => openLightbox(src));
+
+//           track.appendChild(img);
+//         });
+
+//         function updateCarousel() {
+//           track.style.transform = `translateX(-${index * 100}%)`;
+//         }
+
+//         nextBtn.addEventListener("click", () => {
+//           index = (index + 1) % images.length;
+//           updateCarousel();
+//         });
+
+//         prevBtn.addEventListener("click", () => {
+//           index = (index - 1 + images.length) % images.length;
+//           updateCarousel();
+//         });
+
+//       });
+
+//   });
+
+//   // LIGHTBOX
+//   const lightbox = document.getElementById("lightbox");
+//   const lightboxImg = document.getElementById("lightbox-img");
+//   const closeBtn = document.querySelector(".lightbox-close");
+
+//   function openLightbox(src) {
+//     lightboxImg.src = src;
+//     lightbox.classList.add("show");
+//     document.body.style.overflow = "hidden";
+//   }
+
+//   function closeLightbox() {
+//     lightbox.classList.remove("show");
+//     lightboxImg.src = "";
+//     document.body.style.overflow = "";
+//   }
+
+//   closeBtn.addEventListener("click", closeLightbox);
+
+//   lightbox.addEventListener("click", (e) => {
+//     if (e.target === lightbox) closeLightbox();
+//   });
+
+//   document.addEventListener("keydown", (e) => {
+//     if (e.key === "Escape") closeLightbox();
+//   });
+
+// });
+
 document.addEventListener("DOMContentLoaded", function () {
 
-  const carousels = document.querySelectorAll(".carousel");
+  const wrappers = document.querySelectorAll(".coverflow-wrapper");
 
-  const jsonFiles = [
-    "assets/data/pc_laptop.json",
-    "assets/data/kb.json"
-  ];
+  wrappers.forEach(wrapper => {
 
-  carousels.forEach((carousel, i) => {
+    const container = wrapper.querySelector(".coverflow");
+    const prevBtn = wrapper.querySelector(".prev");
+    const nextBtn = wrapper.querySelector(".next");
 
-    const track = carousel.querySelector(".carousel-track");
-    const prevBtn = carousel.querySelector(".prev");
-    const nextBtn = carousel.querySelector(".next");
+    const jsonPath = container.dataset.json;
 
-    let index = 0;
-
-    fetch(jsonFiles[i])
+    fetch(jsonPath)
       .then(res => res.json())
       .then(images => {
 
-        images.forEach(src => {
+        let current = 0;
+
+        images.forEach((src, index) => {
           const img = document.createElement("img");
           img.src = src;
-          img.className = "carousel-img";
-          img.loading = "lazy";
+          img.className = "coverflow-img";
 
-          img.addEventListener("click", () => openLightbox(src));
+          // CLICK LOGIC
+          img.addEventListener("click", () => {
+            if (index === current) {
+              // CENTER IMAGE → PREVIEW ONLY
+              openLightbox(images[current]);
+            } else {
+              // SIDE IMAGE → MOVE TO CENTER
+              current = index;
+              updateCoverflow();
+            }
+          });
 
-          track.appendChild(img);
+          container.appendChild(img);
         });
 
-        function updateCarousel() {
-          track.style.transform = `translateX(-${index * 100}%)`;
+        const allImages = container.querySelectorAll("img");
+
+        function updateCoverflow() {
+
+          allImages.forEach((img, index) => {
+
+            let offset = index - current;
+
+            // Circular correction
+            if (offset > images.length / 2) {
+              offset -= images.length;
+            }
+            if (offset < -images.length / 2) {
+              offset += images.length;
+            }
+
+            if (offset === 0) {
+              img.style.transform =
+                `translateX(0px) scale(1) rotateY(0deg)`;
+              img.style.zIndex = 100;
+              img.classList.add("active");
+            } else {
+              img.style.transform =
+                `translateX(${offset * 260}px) scale(0.8) rotateY(${offset > 0 ? -40 : 40}deg)`;
+              img.style.zIndex = 100 - Math.abs(offset);
+              img.classList.remove("active");
+            }
+
+          });
+
         }
 
-        nextBtn.addEventListener("click", () => {
-          index = (index + 1) % images.length;
-          updateCarousel();
+        prevBtn.addEventListener("click", () => {
+          current = (current - 1 + images.length) % images.length;
+          updateCoverflow();
         });
 
-        prevBtn.addEventListener("click", () => {
-          index = (index - 1 + images.length) % images.length;
-          updateCarousel();
+        nextBtn.addEventListener("click", () => {
+          current = (current + 1) % images.length;
+          updateCoverflow();
         });
+
+        updateCoverflow();
 
       });
 
@@ -421,21 +536,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function closeLightbox() {
     lightbox.classList.remove("show");
-    lightboxImg.src = "";
     document.body.style.overflow = "";
   }
 
   closeBtn.addEventListener("click", closeLightbox);
-
-  lightbox.addEventListener("click", (e) => {
+  lightbox.addEventListener("click", e => {
     if (e.target === lightbox) closeLightbox();
   });
 
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeLightbox();
-  });
-
 });
+
+
 
 
 
